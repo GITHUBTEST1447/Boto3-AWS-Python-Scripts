@@ -1,13 +1,13 @@
 import boto3
 
-def tag_instances():
-    # Initialize the Boto3 EC2 client
+def tag_ec2_instances():
+    # Initialize ec2_client object
     ec2_client = boto3.client('ec2')
 
-    # Describe instances to filter only running Linux instances
+    # Filter instances to only those running specific AMI/OS
     response = ec2_client.describe_instances(
         Filters=[
-            {'Name': 'image-id', 'Values': ['ami-08a52ddb321b32a8c']},
+            {'Name': 'image-id', 'Values': ['ami-08a52ddb321b32a8c']}, # Modify AMI-ID here as needed
             {'Name': 'instance-state-name', 'Values': ['running']}
         ]
     )
@@ -23,7 +23,7 @@ def tag_instances():
         ec2_client.create_tags(
             Resources=instance_ids,
             Tags=[
-                {'Key': 'Operating System', 'Value': 'Linux'}
+                {'Key': 'Operating System', 'Value': 'Linux'} # Modify tag here as needed
                 # Add more tags as needed, using the above format
             ]
         )
@@ -33,5 +33,5 @@ def tag_instances():
         return 0
 
 if __name__ == '__main__':
-    tagged_count = tag_instances()
+    tagged_count = tag_ec2_instances()
     print(f"Tagged {tagged_count} EC2 instance(s) running Linux.")
