@@ -2,16 +2,20 @@ import boto3
 
 # Create ec2 client object
 ec2_client = boto3.client('ec2')
+securityGroup = 'sg-029bfbd37a3d6564c'
+subnetId = 'subnet-020fae177a10d0d92'
+instanceType = 't2.micro'
+imageID = 'ami-08a52ddb321b32a8c'
 
 # Define dictionary containing parameters for EC2 instance creation
 parameters = {
-    'ImageId' : 'ami-08a52ddb321b32a8c',
+    'ImageId' : imageID,
     'MinCount' : 1,
     'MaxCount' : 1,
-    'InstanceType' : 't2.micro',
+    'InstanceType' : instanceType,
     'KeyName' : 'PythonTest',
-    'SecurityGroupIds' : ['sg-029bfbd37a3d6564c'],
-    'SubnetId' : 'subnet-020fae177a10d0d92',
+    'SecurityGroupIds' : [securityGroup],
+    'SubnetId' : subnetId,
     'TagSpecifications' : [{
             
             'ResourceType' : 'instance',
