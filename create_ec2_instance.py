@@ -20,5 +20,5 @@ parameters = {
             }]
 }
 
-# API request to create a EC2 instance with the predefined parameters
+# API request to create a EC2 instance with the pre-defined parameters
 response = ec2_client.run_instances(**parameters)
