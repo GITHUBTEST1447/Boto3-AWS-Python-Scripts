@@ -1,5 +1,8 @@
 import boto3
 
+# This program is intended to be a basic script that will apply a tag of all instances that match a certain AMI ID
+# Created by Steffen Pfahnl
+
 def tag_ec2_instances():
     # Initialize ec2_client object
     ec2_client = boto3.client('ec2')

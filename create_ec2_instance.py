@@ -1,5 +1,8 @@
 import boto3
 
+# This program is intended to be a basic script to create a EC2 instance, it requires certain information (Security Group, SubnetID, Instance Type, AMI ID)
+# Created by Steffen Pfahnl
+
 # Create ec2 client object
 ec2_client = boto3.client('ec2')
 
