@@ -2,6 +2,8 @@ import boto3
 
 # Create ec2 client object
 ec2_client = boto3.client('ec2')
+
+# Declare variables for details about EC2 creation
 securityGroup = 'sg-029bfbd37a3d6564c'
 subnetId = 'subnet-020fae177a10d0d92'
 instanceType = 't2.micro'
