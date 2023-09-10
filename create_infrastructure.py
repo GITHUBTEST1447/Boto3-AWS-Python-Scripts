@@ -3,7 +3,17 @@ import boto3
 ec2_client = boto3.client('ec2')
 
 def vpc_exists(vpc_id):
-    return 0
+    try:
+        response = ec2_client.describe_vpcs(VpcIds=[vpc_id])
+        if response and 'Vpcs' in response and len(response['Vpcs']) > 0:
+            return True
+        else:
+            return False
+    except ec2_client.exceptions.ClientError as e:
+        if "InvalidVpcID.NotFound" in str(e):
+            return False
+        else:
+            raise
 
 def create_vpc(region_name, cidr_block):
 
@@ -56,4 +66,9 @@ def create_vpc(region_name, cidr_block):
     }
 
 if __name__ == "__main__":
-    create_vpc('us-east-1', '10.0.0.0/16')
+    returnValue = create_vpc('us-east-1', '10.0.0.0/16')
+    
+    if vpc_exists(str(returnValue['VPC_ID'])):
+        print("VPC succesfully created")
+    else:
+        print("VPC creation failed")
