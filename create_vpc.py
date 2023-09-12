@@ -69,6 +69,7 @@ if __name__ == "__main__":
     returnValue = create_vpc('us-east-1', '10.0.0.0/16')
     
     if vpc_exists(str(returnValue['VPC_ID'])):
-        print("VPC succesfully created")
+        print("===VPC succesfully created!===")
+        print(returnValue['VPC_ID'])
     else:
-        print("VPC creation failed")
+        print("===VPC creation failed!===")
