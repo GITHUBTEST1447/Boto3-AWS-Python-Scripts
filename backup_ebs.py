@@ -18,8 +18,9 @@ def get_volume_id(instance_id):
     return volume_ids
 
 # Inputting instance ID and setting it into function to get volume ID
-instance_id = 'i-0a7d3479a1059690e'
-volume_id = get_volume_id(instance_id)[0]
+if __name__ == '__main__':
+    instance_id = input("Input instance ID: ")
+    volume_id = get_volume_id(instance_id)[0]
 
-# Creating snapshot with the obtained volume ID
-response = ec2_client.create_snapshot(VolumeId=volume_id)
+    # Creating snapshot with the obtained volume ID
+    response = ec2_client.create_snapshot(VolumeId=volume_id)
